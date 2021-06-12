@@ -1,3 +1,41 @@
-.about {
-  height: 300px;
+.about-us-area {
+  background: #fcfcfc;
+}
+.about-us-area .about-us-wrap {
+  position: relative;
+}
+.about-us-area .about-us-details .section-title {
+  margin-bottom: 0;
+}
+.about-us-area .about-us-details .section-title .title {
+  margin-bottom: 21px;
+}
+.about-us-area .about-us-details .section-title p {
+  color: #5a6471;
+}
+.about-us-area .about-us-details .media {
+  align-items: center;
+  margin-bottom: 30px;
+}
+.about-us-area .about-us-details .media .media-left {
+  width: 79px;
+  height: 79px;
+  border-radius: 4px;
+  text-align: center;
+  line-height: 79px;
+  margin-right: 25px;
+}
+.about-us-area .about-us-details .media .media-body p {
+  color: #5a6471;
+  margin-bottom: 0;
+}
+.about-us-area .about-us-details .media.media-1 .media-left {
+  background: #377dff;
+}
+.about-us-area .about-us-details .media.media-2 .media-left {
+  background: #083996;
+}
+.about-us-area .about-us-details .btn {
+  padding: 0 50px;
+  margin-top: 10px;
 }
