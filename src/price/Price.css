@@ -1,3 +1,142 @@
-.price {
-  height: 300px;
+/*********** pricing-area style **************/
+.pricing-area {
+  background: #fafafa;
+  padding: 20px 0 70px;
+}
+
+.single-price {
+  box-shadow: 0px 12px 24.3px 2.7px rgba(238, 238, 238, 0.78);
+  transition: all 0.3s ease-in;
+  margin-bottom: 30px;
+}
+.single-price:hover {
+  background: teal;
+}
+.single-price:hover .pricing-details {
+  background: #0e42a4;
+}
+.single-price:hover .pricing-list li a {
+  color: #fff;
+}
+.single-price .pricing-details {
+  background: #086491;
+  padding: 40px 0;
+  border-radius: 5px 5px 0 0;
+  transition: all 0.3s ease-in;
+}
+.single-price .pricing-details .pricing-cost {
+  color: #fff;
+  font-weight: 700;
+  font-size: 36px;
+  margin-bottom: 2px;
+}
+.single-price .pricing-details .pricing-subtitle {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  position: relative;
+  display: inline-block;
+  padding-bottom: 17px;
+}
+.single-price .pricing-details .pricing-subtitle:after {
+  position: absolute;
+  content: "";
+  bottom: 0;
+  height: 2px;
+  width: 200px;
+  background: #fff;
+  left: -50%;
+  margin-left: -25px;
+}
+.single-price .pricing-details .pricing-title {
+  color: #fff;
+  font-size: 24px;
+  font-weight: 500;
+  margin-bottom: 3px;
+}
+.single-price .pricing-list {
+  list-style: none;
+  margin: 0;
+  padding: 42px 0 49px;
+}
+.single-price .pricing-list li {
+  margin-bottom: 22px;
+  position: relative;
+}
+.single-price .pricing-list li:after {
+  position: absolute;
+  content: "";
+  background: #e0e0e0;
+  height: 1px;
+  width: 100px;
+  bottom: -9px;
+  left: 50%;
+  margin-left: -50px;
+}
+.single-price .pricing-list li a {
+  color: #768495;
+}
+.single-price .pricing-list li .btn {
+  color: #fff;
+}
+.single-price .pricing-list li:last-child {
+  margin-bottom: 0;
+}
+.single-price .pricing-list li:last-child:after {
+  display: none;
+}
+.single-price .pricing-list .btn-blue {
+  padding: 0 45px;
+  margin-top: 32px;
+}
+
+.single-price .pricing-list .btn-blue:hover {
+  background: #ff536d;
+}
+
+/*********** section-title style **************/
+.section-title {
+  margin-bottom: 51px;
+}
+.section-title .subtitle {
+  position: relative;
+  font-size: 18px;
+  font-weight: 500;
+  color: teal;
+  margin-bottom: 14px;
+  display: inline-block;
+}
+.section-title .subtitle.subtitle-thumb {
+  padding-left: 25px;
+}
+.section-title .subtitle.subtitle-thumb:after {
+  content: "";
+  position: absolute;
+  background: teal;
+  height: 10px;
+  width: 10px;
+  top: 0;
+  left: 0;
+}
+.section-title .subtitle.subtitle-thumb:before {
+  content: "";
+  position: absolute;
+  background: navy;
+  height: 10px;
+  width: 10px;
+  top: 5px;
+  left: 5px;
+  z-index: 1;
+}
+.section-title .title {
+  font-weight: 600;
+  font-size: 40px;
+  font-family: var(--body-font);
+  color: #292929;
+  margin-bottom: 23px;
+}
+.section-title p {
+  color: #768495;
+  font-weight: 400;
+  margin-bottom: 32px;
 }

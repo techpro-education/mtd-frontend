@@ -1,3 +1,119 @@
-.footer {
-  height: 500px;
+.footer__logo {
+  width: 60px;
+  object-fit: contain;
+}
+
+/*--------------------------------------------------
+    ##Footer
+---------------------------------------------------*/
+.footer-area {
+  background-color: teal;
+  background-position: center;
+  background-size: cover;
+  margin-top: 5px;
+  z-index: 0;
+  padding: 30px 0 30px;
+}
+
+.footer-inner .widget-contact p {
+  margin-bottom: 21px;
+}
+.footer-inner .widget-contact .social-area li a {
+  color: #083996;
+}
+.footer-inner .widget-contact .social-area li a:hover {
+  color: #fff;
+}
+
+.footer-bottom {
+  padding: 29px 0;
+}
+.footer-bottom ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: inline-flex;
+}
+.footer-bottom ul li {
+  font-size: 18px;
+  margin-right: 18px;
+  color: #292929;
+}
+.footer-bottom .copy-right {
+  font-size: 18px;
+  color: #292929;
+}
+
+.footer-inner-2 .widget-contact .social-area li a:hover {
+  background: #ff536d;
+}
+
+/*---------------------------------------------------
+	widget styles
+----------------------------------------------------*/
+
+.widget {
+  margin-bottom: 30px;
+}
+.widget-title {
+  color: #fff;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.widget-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.widget-list li {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 400;
+  margin-bottom: 9px;
+  transition: all 0.3s ease-in;
+}
+
+.widget-list li a {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 400;
+  margin-bottom: 9px;
+  transition: all 0.3s ease-in;
+}
+
+.widget p {
+  color: #fff;
+}
+
+.widget-list li:hover a {
+  color: #083996;
+}
+
+/*********** social-area style **************/
+.social-area {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: inline-flex;
+}
+.social-area li a {
+  font-size: 18px;
+  height: 46px;
+  width: 46px;
+  border-radius: 50%;
+  background: #fff;
+  display: inline-block;
+  line-height: 46px;
+  margin-left: 16px;
+  text-align: center;
+  transition: all 0.3s ease-in;
+}
+.social-area li a:hover {
+  background: #377dff;
+  color: #fff;
+}
+.social-area li:first-child a {
+  margin-left: 0;
 }
