@@ -8,7 +8,7 @@ import LinkedInIcon from "@material-ui/icons/LinkedIn";
 import PinterestIcon from "@material-ui/icons/Pinterest";
 function Footer() {
   return (
-    <div>
+    <div id="contactus">
       <footer className="footer-area">
         <div className="container">
           <div className="footer-inner">

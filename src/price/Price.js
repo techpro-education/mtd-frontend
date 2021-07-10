@@ -4,7 +4,7 @@ import "./Price.css";
 
 function Price() {
   return (
-    <div className="pricing-area">
+    <div id="package" className="pricing-area">
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-lg-8 text-center">
