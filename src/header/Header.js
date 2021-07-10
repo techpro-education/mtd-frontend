@@ -16,8 +16,8 @@ const useStyles = makeStyles((theme) => ({
   menuButton: {
     marginRight: theme.spacing(2),
   },
+  // Latest Changes for hover
   button: {
-    textAlign: "center",
     marginLeft: "50px",
     color: "white",
     fontSize: "15px",
