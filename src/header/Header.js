@@ -17,10 +17,15 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(2),
   },
   button: {
-    paddingLeft: "50px",
+    textAlign: "center",
+    marginLeft: "50px",
     color: "white",
     fontSize: "15px",
     fontWeight: "bold",
+    "&:hover": {
+      backgroundColor: "black",
+      color: "yellow",
+    },
   },
   spacer: {
     paddingLeft: "300px",

@@ -1,0 +1,26 @@
+button:hover {
+  opacity: 0.8;
+}
+
+.container {
+  padding: 20px 20px 20px 20px;
+}
+
+.register__btn {
+  margin-top: 10px !important;
+}
+
+fieldset {
+  margin: 20px !important;
+  padding: 0 10px 10px !important;
+  border: 1px solid #666 !important;
+  border-radius: 10px !important;
+  box-shadow: 0 0 10px grey !important;
+  padding-top: 10px !important;
+}
+legend {
+  align-content: center !important;
+}
+fieldset > legend {
+  float: left;
+}
