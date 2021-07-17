@@ -37,25 +37,25 @@ function Header() {
   const showAboutUs = () => {
     const elmnt = document.getElementById("about");
     if (elmnt) {
-      elmnt.scrollIntoView();
+      elmnt.scrollIntoView({ behavior: "smooth" });
     }
   };
   const showProduct = () => {
     const elmnt = document.getElementById("product");
     if (elmnt) {
-      elmnt.scrollIntoView();
+      elmnt.scrollIntoView({ behavior: "smooth" });
     }
   };
   const showPackage = () => {
     const elmnt = document.getElementById("package");
     if (elmnt) {
-      elmnt.scrollIntoView();
+      elmnt.scrollIntoView({ behavior: "smooth" });
     }
   };
   const showContactUs = () => {
     const elmnt = document.getElementById("contactus");
     if (elmnt) {
-      elmnt.scrollIntoView();
+      elmnt.scrollIntoView({ behavior: "smooth" });
     }
   };
   return (

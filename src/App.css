@@ -18,3 +18,22 @@ body {
 .p-20 {
   padding: 20px 20px 20px 20px;
 }
+
+fieldset {
+  margin: 20px !important;
+  padding: 0 10px 10px !important;
+  border: 1px solid #666 !important;
+  border-radius: 10px !important;
+  box-shadow: 0 0 10px grey !important;
+  padding-top: 10px !important;
+}
+legend {
+  align-content: center !important;
+}
+fieldset > legend {
+  float: left;
+}
+
+button:hover {
+  color: yellow;
+}
