@@ -2,7 +2,9 @@ import * as React from "react";
 import { Formik, Form, Field } from "formik";
 import { Button, LinearProgress } from "@material-ui/core";
 import { TextField } from "formik-material-ui";
+import service from "../service/bankService";
 import { ToastContainer, toast } from "react-toastify";
+import { useStateValue } from "../StateProvider";
 import { useHistory } from "react-router";
 import "react-toastify/dist/ReactToastify.css";
 import * as Yup from "yup";
@@ -56,6 +58,7 @@ const LoginForm = (props) => (
 );
 const Login = () => {
   const history = useHistory();
+  const dispatch = useStateValue()[1];
   return (
     <div>
       <Formik
@@ -64,7 +67,33 @@ const Login = () => {
           password: "",
         }}
         validationSchema={LoginSchema}
-        onSubmit={(values, actions) => {}}
+        onSubmit={(values, actions) => {
+          service.login(values).then((response) => {
+            if (response.status === 200) {
+              const userInfo = response.data;
+              localStorage.setItem(
+                "auth",
+                JSON.stringify({
+                  token: userInfo.jwt,
+                })
+              );
+              dispatch({
+                type: "LOGIN",
+                item: userInfo,
+              });
+              if (userInfo?.user?.isAdmin) {
+                history.push("/admin");
+              } else {
+                history.push("/user");
+              }
+              toast.success("Login Successful", {
+                position: toast.POSITION.TOP_CENTER,
+              });
+              actions.resetForm();
+            }
+          });
+          actions.setSubmitting(false);
+        }}
         component={LoginForm}
       ></Formik>
       <ToastContainer />

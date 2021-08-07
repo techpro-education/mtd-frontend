@@ -145,8 +145,7 @@ const Register = () => {
           confirmPassword: "",
         }}
         validationSchema={RegisterSchema}
-        onSubmit={(values, actions) => {
-          console.log("Object", values);
+        onSubmit={(values, actions) => { 
           service.register(values).then((response) => {
             if (response.status === 200 && response.data.success) {
               toast.success(response.data.message, {
