@@ -9,6 +9,11 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 
+import ExitToApp from "@material-ui/icons/ExitToApp";
+import { useStateValue } from "../StateProvider";
+import AdminMenu from "../menus/AdminMenu";
+import UserMenu from "../menus/UserMenu";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -28,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   spacer: {
-    paddingLeft: "300px",
+    paddingLeft: "250px",
   },
 }));
 
@@ -58,6 +63,7 @@ function Header() {
       elmnt.scrollIntoView({ behavior: "smooth" });
     }
   };
+  const [{ userInfo }, dispatch] = useStateValue();
   return (
     <div className={classes.root}>
       <AppBar position="static">
@@ -81,18 +87,52 @@ function Header() {
             Contact Us
           </Button>
           <div className={classes.spacer}></div>
-          <Link to="/login" className="header__link">
-            <div className="header__option">
-              <span className="header__lineOne">Hello</span>
-              <span className="header__lineTwo">Sign In</span>
+          {!userInfo && (
+            <div class="row">
+              <div>
+                <Link to="/login" className="header__link">
+                  <div className="header__option">
+                    <span className="header__lineOne">Hello</span>
+                    <span className="header__lineTwo">Sign In</span>
+                  </div>
+                </Link>
+              </div>
+              <div>
+                <Link to="/register" className="header__link">
+                  <div className="header__option">
+                    <span className="header__lineOne">New User</span>
+                    <span className="header__lineTwo">Register</span>
+                  </div>
+                </Link>
+              </div>
             </div>
-          </Link>
-          <Link to="/register" className="header__link">
-            <div className="header__option">
-              <span className="header__lineOne">New User</span>
-              <span className="header__lineTwo">Register</span>
+          )}
+          {userInfo && userInfo.user && userInfo.user.isAdmin && <AdminMenu />}
+          {userInfo && userInfo.user && !userInfo.user.isAdmin && <UserMenu />}
+          {userInfo && (
+            <div class="row">
+              <div class="row mx-auto">
+                <div className="header__link">
+                  <div className="header__option">
+                    <span className="header__lineOne">Welcome</span>
+                    <span className="header__lineTwo">
+                      {userInfo.user.firstName} {userInfo.user.lastName}
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <Link to="/logout" className="header__link mx-auto">
+                  <div className="header__option">
+                    <span className="header__lineOne">
+                      <ExitToApp />
+                    </span>
+                    <span className="header__lineOne">Logout</span>
+                  </div>
+                </Link>
+              </div>
             </div>
-          </Link>
+          )}
         </Toolbar>
       </AppBar>
     </div>
