@@ -40,14 +40,14 @@ const UserMenu = () => {
     setAnchorEl(null);
   };
   return (
-    <div class="mx-auto">
+    <div>
       <Button
         aria-controls="admin-menu"
         aria-haspopup="true"
         onClick={handleClick}
         className="menu"
       >
-        <MenuIcon className="menu" />
+        <MenuIcon className="menu " />
         Actions
       </Button>
       <Menu

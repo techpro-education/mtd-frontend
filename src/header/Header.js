@@ -113,7 +113,7 @@ function Header() {
             <div class="row">
               <div class="row mx-auto">
                 <div className="header__link">
-                  <div className="header__option">
+                  <div className="header__option pl-2">
                     <span className="header__lineOne">Welcome</span>
                     <span className="header__lineTwo">
                       {userInfo.user.firstName} {userInfo.user.lastName}
