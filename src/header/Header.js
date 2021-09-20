@@ -11,6 +11,7 @@ import Typography from "@material-ui/core/Typography";
 
 import ExitToApp from "@material-ui/icons/ExitToApp";
 import { useStateValue } from "../StateProvider";
+
 import AdminMenu from "../menus/AdminMenu";
 import UserMenu from "../menus/UserMenu";
 
@@ -21,9 +22,8 @@ const useStyles = makeStyles((theme) => ({
   menuButton: {
     marginRight: theme.spacing(2),
   },
-  // Latest Changes for hover
   button: {
-    marginLeft: "50px",
+    marginLeft: "40px",
     color: "white",
     fontSize: "15px",
     fontWeight: "bold",
@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   spacer: {
-    paddingLeft: "250px",
+    paddingLeft: "200px",
   },
 }));
 
@@ -63,7 +63,7 @@ function Header() {
       elmnt.scrollIntoView({ behavior: "smooth" });
     }
   };
-  const [{ userInfo }, dispatch] = useStateValue();
+  const [{ userInfo }] = useStateValue();
   return (
     <div className={classes.root}>
       <AppBar position="static">
@@ -89,48 +89,49 @@ function Header() {
           <div className={classes.spacer}></div>
           {!userInfo && (
             <div class="row">
-              <div>
-                <Link to="/login" className="header__link">
-                  <div className="header__option">
-                    <span className="header__lineOne">Hello</span>
-                    <span className="header__lineTwo">Sign In</span>
-                  </div>
-                </Link>
-              </div>
-              <div>
-                <Link to="/register" className="header__link">
-                  <div className="header__option">
-                    <span className="header__lineOne">New User</span>
-                    <span className="header__lineTwo">Register</span>
-                  </div>
-                </Link>
-              </div>
+              <Link to="/login" className="header__link">
+                <div className="header__option">
+                  <span className="header__lineOne">Hello</span>
+                  <span className="header__lineTwo">Sign In</span>
+                </div>
+              </Link>
+              <Link to="/register" className="header__link">
+                <div className="header__option">
+                  <span className="header__lineOne">New User</span>
+                  <span className="header__lineTwo">Register</span>
+                </div>
+              </Link>
             </div>
           )}
           {userInfo && userInfo.user && userInfo.user.isAdmin && <AdminMenu />}
           {userInfo && userInfo.user && !userInfo.user.isAdmin && <UserMenu />}
           {userInfo && (
             <div class="row">
+              {/*Below Div is for Greetings */}
               <div class="row mx-auto">
-                <div className="header__link">
-                  <div className="header__option pl-2">
-                    <span className="header__lineOne">Welcome</span>
-                    <span className="header__lineTwo">
+                <div className="header__greeting">
+                  <div className="header__option">
+                    <div className="header__lineOne">Welcome</div>
+                    <div className="header__lineTwo">
                       {userInfo.user.firstName} {userInfo.user.lastName}
-                    </span>
+                    </div>
                   </div>
                 </div>
               </div>
+              {/*Greetings div got completed */}
+
+              {/* Div for Logout Starts here */}
               <div>
                 <Link to="/logout" className="header__link mx-auto">
                   <div className="header__option">
                     <span className="header__lineOne">
                       <ExitToApp />
                     </span>
-                    <span className="header__lineOne">Logout</span>
+                    <span className="header__lineTwo">Logout</span>
                   </div>
                 </Link>
               </div>
+              {/* Div for Logout Completed here */}
             </div>
           )}
         </Toolbar>

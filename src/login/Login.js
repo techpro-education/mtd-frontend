@@ -8,8 +8,8 @@ import { useStateValue } from "../StateProvider";
 import { useHistory } from "react-router";
 import "react-toastify/dist/ReactToastify.css";
 import * as Yup from "yup";
-import "./Login.css";
 
+toast.configure();
 const LoginSchema = Yup.object().shape({
   password: Yup.string().required("Required"),
   username: Yup.string().required("Required"),
@@ -69,7 +69,7 @@ const Login = () => {
         validationSchema={LoginSchema}
         onSubmit={(values, actions) => {
           service.login(values).then((response) => {
-            if (response.status === 200) {
+            if (response && response.status === 200) {
               const userInfo = response.data;
               localStorage.setItem(
                 "auth",
@@ -90,6 +90,10 @@ const Login = () => {
                 position: toast.POSITION.TOP_CENTER,
               });
               actions.resetForm();
+            } else {
+              toast.error("Invalid Credentials , Please Check....", {
+                position: toast.POSITION.TOP_CENTER,
+              });
             }
           });
           actions.setSubmitting(false);

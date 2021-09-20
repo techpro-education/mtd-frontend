@@ -3,20 +3,16 @@
 }
 
 body {
-  /*background-color: rgb(234, 237, 237);*/
   margin: 0;
 }
 
-.pd-100 {
-  padding: 100px 0;
+/*Banner Style*/
+.banner {
+  height: 300px;
 }
 
 .pdt-50 {
   padding-top: 50px;
-}
-
-.p-20 {
-  padding: 20px 20px 20px 20px;
 }
 
 fieldset {
@@ -27,13 +23,12 @@ fieldset {
   box-shadow: 0 0 10px grey !important;
   padding-top: 10px !important;
 }
-legend {
-  align-content: center !important;
-}
+
 fieldset > legend {
   float: left;
 }
 
 button:hover {
   color: yellow;
+  opacity: 0.8;
 }

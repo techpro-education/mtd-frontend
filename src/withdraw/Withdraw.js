@@ -1,26 +1,20 @@
 import React from "react";
-
-import { Formik, Form, Field } from "formik";
+import { useHistory } from "react-router";
+import { useStateValue } from "../StateProvider";
+import AccountInfo from "../account/AccountInfo";
+import { Formik, Field, Form } from "formik";
 import { Button, LinearProgress } from "@material-ui/core";
+import Divider from "@material-ui/core/Divider";
 import { TextField } from "formik-material-ui";
+import * as Yup from "yup";
 import service from "../service/bankService";
 import { ToastContainer, toast } from "react-toastify";
-import { useStateValue } from "../StateProvider";
-import { useHistory } from "react-router";
-import AccountInfo from "../account/AccountInfo";
 import Transactions from "../account/Transactions";
-import Divider from "@material-ui/core/Divider";
-import "react-toastify/dist/ReactToastify.css";
-import * as Yup from "yup";
 import "./Withdraw.css";
-import { makeStyles } from "@material-ui/core/styles";
-import styles from "../styles/typographyStyle.js";
 
-const useStyles = makeStyles(styles);
-
+toast.configure();
 const WithdrawSchema = Yup.object().shape({
-  amount: Yup.string().required("Required"),
-  comment: Yup.string().required("Required"),
+  amount: Yup.string().required("Please Enter the Amount"),
 });
 
 const WithdrawForm = (props) => (
@@ -28,8 +22,8 @@ const WithdrawForm = (props) => (
     <fieldset>
       <legend>Withdraw</legend>
       <Form>
-        <div className="row justify-content-start">
-          <div className="col-lg-2 text-center p-3">
+        <div className="row">
+          <div className="col-2 text-center p-3">
             <Field
               component={TextField}
               name="amount"
@@ -37,38 +31,34 @@ const WithdrawForm = (props) => (
               label="Amount"
             />
           </div>
-          <div className="col-lg-2 text-center p-3">
+          <div className="col-2 text-center p-3">
             <Field
               component={TextField}
+              name="comment"
               type="text"
               label="Comment"
-              name="comment"
             />
           </div>
-          <div> {props.isSubmitting && <LinearProgress />}</div>
-        </div>
-        <div className="row justify-content-start">
-          <div className="col-lg-4 text-center p-3">
+          <div className="col-2 text-center p-3">
             <Button
               variant="contained"
               color="primary"
               disabled={props.isSubmitting}
               onClick={props.submitForm}
-              className="withdraw__btn"
+              className="Withdraw__btn"
             >
-              Submit
+              Withdraw
             </Button>
           </div>
         </div>
+        <div>{props.isSubmitting && <LinearProgress />}</div>
       </Form>
     </fieldset>
   </div>
 );
-
 const Withdraw = () => {
   const [{ userInfo }, dispatch] = useStateValue();
   const history = useHistory();
-  const classes = useStyles();
   return (
     <div>
       {!userInfo && history.push("/login")}
@@ -77,33 +67,29 @@ const Withdraw = () => {
           <AccountInfo />
           <div>
             <Formik
-              initialValues={{
-                amount: null,
-                comment: "",
-              }}
+              initialValues={{ amount: "", comment: "" }}
               validationSchema={WithdrawSchema}
               onSubmit={(values, actions) => {
                 service.withdraw(values).then((response) => {
+                  actions.setSubmitting(false);
                   if (response.status === 200) {
-                    const userInfo = response.data;
+                    const user = response.data;
                     dispatch({
                       type: "UPDATE",
-                      item: userInfo,
+                      item: user,
                     });
-                    toast.success(userInfo.message, {
+                    toast.success(user.message, {
                       position: toast.POSITION.TOP_CENTER,
                     });
                     actions.resetForm();
                   }
                 });
-                actions.setSubmitting(false);
               }}
               component={WithdrawForm}
             ></Formik>
             <ToastContainer />
           </div>
           <Divider />
-          <h1 className={classes.infoText}>Transactions</h1>
           <Transactions />
         </div>
       )}

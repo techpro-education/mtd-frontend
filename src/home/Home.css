@@ -3,15 +3,10 @@
   margin-left: auto;
   margin-right: auto;
 }
-.home__image {
-  width: 100%;
-}
-.home__row {
+
+.product__row {
   display: flex;
-  margin-left: 5px;
-  margin-right: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
   background-color: white;
-}
-.service {
-  margin-top: 20px;
 }

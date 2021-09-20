@@ -10,11 +10,15 @@ const AdminMenu = () => {
   const history = useHistory();
   const [anchorEl, setAnchorEl] = React.useState(null);
 
-  const handleClick = (event) => {
+  const handleOnClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
   const handleClose = () => {
+    setAnchorEl(null);
+  };
+  const showDashboard = () => {
+    history.push("/admin");
     setAnchorEl(null);
   };
 
@@ -23,16 +27,12 @@ const AdminMenu = () => {
     setAnchorEl(null);
   };
 
-  const showDashboard = () => {
-    history.push("/admin");
-    setAnchorEl(null);
-  };
   return (
-    <div>
+    <div class="mx-auto">
       <Button
         aria-controls="admin-menu"
         aria-haspopup="true"
-        onClick={handleClick}
+        onClick={handleOnClick}
         className="menu"
       >
         <MenuIcon className="menu" />
@@ -43,7 +43,7 @@ const AdminMenu = () => {
         anchorEl={anchorEl}
         keepMounted
         open={Boolean(anchorEl)}
-        onClose={handleClose}
+        close={handleClose}
       >
         <MenuItem onClick={showDashboard}>Dashboard</MenuItem>
         <MenuItem onClick={showUserMgmt}>User Management</MenuItem>

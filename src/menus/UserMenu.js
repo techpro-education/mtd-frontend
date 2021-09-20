@@ -10,12 +10,8 @@ const UserMenu = () => {
   const history = useHistory();
   const [anchorEl, setAnchorEl] = React.useState(null);
 
-  const handleClick = (event) => {
+  const handleOnClick = (event) => {
     setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
   };
 
   const showDashboard = () => {
@@ -31,7 +27,7 @@ const UserMenu = () => {
     history.push("/withdrawal");
     setAnchorEl(null);
   };
-  const addRecipient = () => {
+  const handleRecipient = () => {
     history.push("/addRecipient");
     setAnchorEl(null);
   };
@@ -39,28 +35,31 @@ const UserMenu = () => {
     history.push("/transfer");
     setAnchorEl(null);
   };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
   return (
-    <div>
+    <div class="mx-auto">
       <Button
-        aria-controls="admin-menu"
+        aria-controls="user-menu"
         aria-haspopup="true"
-        onClick={handleClick}
         className="menu"
+        onClick={handleOnClick}
       >
-        <MenuIcon className="menu " />
+        <MenuIcon className="menu" />
         Actions
       </Button>
       <Menu
-        id="admin-menu"
+        id="user-menu"
         anchorEl={anchorEl}
         keepMounted
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem onClick={showDashboard}>Dashboard</MenuItem>
+        <MenuItem onClick={showDashboard}>Dashoard</MenuItem>
         <MenuItem onClick={handleDeposit}>Deposit</MenuItem>
         <MenuItem onClick={handleWithdrawal}>Withdrawal</MenuItem>
-        <MenuItem onClick={addRecipient}>Add Recipient</MenuItem>
+        <MenuItem onClick={handleRecipient}>Recipient</MenuItem>
         <MenuItem onClick={handleTransfer}>Transfer</MenuItem>
       </Menu>
     </div>

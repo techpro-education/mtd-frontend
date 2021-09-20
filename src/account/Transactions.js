@@ -11,22 +11,21 @@ import TablePagination from "@material-ui/core/TablePagination";
 import TableRow from "@material-ui/core/TableRow";
 
 const columns = [
-  { id: "date", label: "Date", minWidth: 170 },
-  { id: "description", label: "Description", minWidth: 200 },
   {
-    id: "type",
-    label: "Type",
-    minWidth: 170,
+    id: "id",
+    label: "Transaction Id",
+    minwidth: 170,
+    align: "center",
   },
-  {
-    id: "amount",
-    label: "Amount",
-    minWidth: 170,
-  },
+  { id: "date", label: "Date", minwidth: 170, align: "center" },
+  { id: "description", label: "Description", minwidth: 170, align: "center" },
+  { id: "type", label: "Type", minwidth: 170, align: "center" },
+  { id: "amount", label: "Amount", minwidth: 170, align: "center" },
   {
     id: "availableBalance",
-    label: "Available Balance",
-    minWidth: 170,
+    label: "AvailableBalance",
+    minwidth: 170,
+    align: "center",
   },
 ];
 
@@ -38,13 +37,13 @@ const useStyles = makeStyles({
     maxHeight: 440,
   },
 });
-
-export default function Transactions() {
+export default function Transaction() {
   const [{ userInfo }] = useStateValue();
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
-  const rows = userInfo.user.transactions;
+  const rows = userInfo.user.transactions; 
+
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -72,29 +71,29 @@ export default function Transactions() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row) => {
-                return (
-                  <TableRow hover tabIndex={-1} key={row.id}>
-                    {columns.map((column) => {
-                      const value = row[column.id];
-                      return (
-                        <TableCell key={column.id} align={column.align}>
-                          {column.format && typeof value === "number"
-                            ? column.format(value)
-                            : value}
-                        </TableCell>
-                      );
-                    })}
-                  </TableRow>
-                );
-              })}
+            {rows &&
+              rows
+                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                .map((row) => {
+                  return (
+                    <TableRow hover tabIndex={-1} key={row.id}>
+                      {columns.map((column) => {
+                        const value = row[column.id];
+                        return (
+                          <TableCell key={column.id} align={column.align}>
+                            {value}
+                          </TableCell>
+                        );
+                      })}
+                    </TableRow>
+                  );
+                })}
           </TableBody>
         </Table>
       </TableContainer>
+      {rows && (
       <TablePagination
-        rowsPerPageOptions={[10, 25, 100]}
+        rowsPerPageOptions={[10, 25, 50, 100]}
         component="div"
         count={rows.length}
         rowsPerPage={rowsPerPage}
@@ -102,6 +101,7 @@ export default function Transactions() {
         onChangePage={handleChangePage}
         onChangeRowsPerPage={handleChangeRowsPerPage}
       />
+      )}
     </Paper>
   );
 }

@@ -40,22 +40,6 @@ const TransferForm = (props) => (
       <Form>
         <div className="row justify-content-start">
           <div className="col-lg-4 text-center p-3">
-            {/*
-              <FormControl className={classes.formControl}>
-                <InputLabel>Recipient</InputLabel>
-                <Select
-                  name="recipientName"
-                  value={props.values.recipient}
-                  onChange={handleSelect}
-                >
-                  {recipients.map((recipient) => (
-                    <MenuItem key={recipient.id} value={recipient.name}>
-                      {recipient.name} - {recipient.bankName}
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
-              */}
             <Autocomplete
               className={classes.formControl}
               id="recipient"
@@ -64,7 +48,6 @@ const TransferForm = (props) => (
               getOptionLabel={(option) => option.name}
               style={{ width: 300 }}
               onChange={(e, value) => {
-                console.log(value);
                 props.setFieldValue(
                   "recipientName",
                   value !== null ? value.name : ""
@@ -75,16 +58,6 @@ const TransferForm = (props) => (
               )}
             />
           </div>
-          {/*
-          <div className="col-lg-2 text-center p-3">
-            <Field
-              component={TextField}
-              name="recipientName"
-              type="text"
-              label="Recipient"
-            />
-          </div>
-          */}
           <div className="col-lg-4 text-center p-3">
             <Field
               component={FormikTextField}
@@ -117,7 +90,6 @@ const Transfer = () => {
   const [{ userInfo }, dispatch] = useStateValue();
   const history = useHistory();
   recipients = userInfo.user.recipients;
-  const [recipient, setRecipient] = useState("");
   classes = useStyles();
   return (
     <div>
@@ -135,12 +107,12 @@ const Transfer = () => {
               onSubmit={(values, actions) => {
                 service.transfer(values).then((response) => {
                   if (response.status === 200) {
-                    const userInfo = response.data;
+                    const userInfoData = response.data;
                     dispatch({
                       type: "UPDATE",
-                      item: userInfo,
+                      item: userInfoData,
                     });
-                    toast.success(userInfo.message, {
+                    toast.success(userInfoData.message, {
                       position: toast.POSITION.TOP_CENTER,
                     });
                     actions.resetForm();

@@ -108,7 +108,7 @@
   line-height: 46px;
   margin-left: 16px;
   text-align: center;
-  transition: all 0.3s ease-in;
+  transition: all 0.5s ease-in;
 }
 .social-area li a:hover {
   background: #377dff;

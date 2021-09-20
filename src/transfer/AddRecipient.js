@@ -1,5 +1,4 @@
 import React from "react";
-
 import { Formik, Form, Field } from "formik";
 import { Button, LinearProgress } from "@material-ui/core";
 import { TextField } from "formik-material-ui";
@@ -15,17 +14,18 @@ import * as Yup from "yup";
 import styles from "../styles/typographyStyle.js";
 import { makeStyles } from "@material-ui/core/styles";
 
+toast.configure();
 const useStyles = makeStyles(styles);
 
 const RecipientSchema = Yup.object().shape({
   name: Yup.string().required("Required"),
-  email: Yup.string().email("Invalid email").required("Required"),
+  email: Yup.string().email("Invalid Email").required("Required"),
   phone: Yup.number()
     .positive("Phone Number can't start with a minus")
     .integer("A phone number can't include a decimal point")
-    .required("Contact Number is Required"),
-  bankName: Yup.string().required("Bank Name is Required"),
-  bankNumber: Yup.string().required("Bank Number is Required"),
+    .required("Required"),
+  bankName: Yup.string().required("Required"),
+  bankNumber: Yup.string().required("Required"),
 });
 
 const RecipientForm = (props) => (
@@ -86,7 +86,7 @@ const RecipientForm = (props) => (
           </div>
         </div>
         <div className="row justify-content-start">
-          <div className="col-lg-4 text-center p-3">
+          <div className="text-center p-3">
             {props.isSubmitting && <LinearProgress />}
           </div>
         </div>
@@ -120,18 +120,15 @@ const AddRecipient = () => {
                   if (response.status === 200) {
                     if (response.data.success) {
                       const userInfo = response.data;
-                      dispatch({
-                        type: "UPDATE",
-                        item: userInfo,
-                      });
+                      dispatch({ type: "UPDATE", item: userInfo });
                       toast.success(userInfo.message, {
                         position: toast.POSITION.TOP_CENTER,
                       });
                       actions.resetForm();
                     }
                   }
+                  actions.setSubmitting(false);
                 });
-                actions.setSubmitting(false);
               }}
               component={RecipientForm}
             ></Formik>

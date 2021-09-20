@@ -6,7 +6,15 @@ import reportWebVitals from "./reportWebVitals";
 import { StateProvider } from "./StateProvider";
 import reducer, { initialState } from "./reducer";
 import "bootstrap/dist/css/bootstrap.min.css";
-
+import axios from "axios";
+axios.interceptors.response.use(
+  function (response) {
+    return response;
+  },
+  function (error) {
+    return error;
+  }
+);
 ReactDOM.render(
   <React.Fragment>
     <StateProvider initialState={initialState} reducer={reducer}>

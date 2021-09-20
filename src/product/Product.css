@@ -1,4 +1,4 @@
-.card_img {
+.card__img {
   width: 50%;
   object-fit: contain;
 }
@@ -15,6 +15,7 @@
   min-width: 100px;
   background-color: white;
 }
+
 .product__info {
   height: 120px;
   margin-bottom: 15px;
@@ -28,11 +29,4 @@
   max-height: 200px;
   object-fit: contain;
   margin-bottom: 15px;
-}
-
-.product > button {
-  background-color: #f0c14b;
-  border: 1px solid;
-  border-color: #a88734 #9c7e31 #846a29;
-  cursor: pointer;
 }

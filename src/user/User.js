@@ -86,8 +86,7 @@ const User = () => {
       y: _.map(orderedTransferArray, "date"),
       hoverinfo: "percent total+x",
     },
-  ];
-  console.log("Funnel = ", transferData);
+  ]; 
   const totalDeposit = _.sum(depositArray);
   const totalWithdraw = _.sum(withdrawalArray);
   return (

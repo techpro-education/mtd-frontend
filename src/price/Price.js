@@ -29,16 +29,16 @@ function Price() {
               </div>
               <ul className="pricing-list">
                 <li>
-                  <Link to={"/services"}>Miximum Deposit $10,00</Link>
+                  <Link to={"/services"}>Minumum Deposit $1000</Link>
                 </li>
                 <li>
-                  <Link to={"/services"}>Minimum Deposit $10</Link>
+                  <Link to={"/services"}>Maximum Deposit $10000</Link>
                 </li>
                 <li>
-                  <Link to={"/services"}>Up to 50 Users available</Link>
+                  <Link to={"/services"}>Add upto 5 Users</Link>
                 </li>
                 <li>
-                  <Link to={"/services"}>Free Banking</Link>
+                  <Link to={"/services"}>Free Internet Banking</Link>
                 </li>
                 <li>
                   <Link className="btn btn-blue" to={"/services"}>
@@ -57,16 +57,16 @@ function Price() {
               </div>
               <ul className="pricing-list">
                 <li>
-                  <Link to={"/services"}>Miximum Deposit $10,00</Link>
+                  <Link to={"/services"}>Minimum Deposit $500</Link>
                 </li>
                 <li>
-                  <Link to={"/services"}>Minimum Deposit $10</Link>
+                  <Link to={"/services"}>Maximum Deposit $20000</Link>
                 </li>
                 <li>
-                  <Link to={"/services"}>Up to 50 Users available</Link>
+                  <Link to={"/services"}>Add upto 10 Users</Link>
                 </li>
                 <li>
-                  <Link to={"/services"}>Free Banking</Link>
+                  <Link to={"/services"}>Free Internet Banking</Link>
                 </li>
                 <li>
                   <Link className="btn btn-blue " to={"/services"}>
@@ -85,16 +85,16 @@ function Price() {
               </div>
               <ul className="pricing-list">
                 <li>
-                  <Link to={"/services"}>Miximum Deposit $10,00</Link>
+                  <Link to={"/services"}>Minimum Deposit $0</Link>
                 </li>
                 <li>
-                  <Link to={"/services"}>Minimum Deposit $10</Link>
+                  <Link to={"/services"}>Maximum Deposit $50000</Link>
                 </li>
                 <li>
-                  <Link to={"/services"}>Up to 50 Users available</Link>
+                  <Link to={"/services"}>Add upto 20 Users</Link>
                 </li>
                 <li>
-                  <Link to={"/services"}>Free Banking</Link>
+                  <Link to={"/services"}>Free Internet Banking</Link>
                 </li>
                 <li>
                   <Link className="btn btn-blue " to={"/services"}>

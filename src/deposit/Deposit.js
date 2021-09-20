@@ -1,26 +1,24 @@
 import React from "react";
-
-import { Formik, Form, Field } from "formik";
+import { useHistory } from "react-router";
+import { useStateValue } from "../StateProvider";
+import AccountInfo from "../account/AccountInfo";
+import { Formik, Field, Form } from "formik";
 import { Button, LinearProgress } from "@material-ui/core";
+import Divider from "@material-ui/core/Divider";
 import { TextField } from "formik-material-ui";
+import * as Yup from "yup";
 import service from "../service/bankService";
 import { ToastContainer, toast } from "react-toastify";
-import { useStateValue } from "../StateProvider";
-import { useHistory } from "react-router";
-import AccountInfo from "../account/AccountInfo";
 import Transactions from "../account/Transactions";
-import Divider from "@material-ui/core/Divider";
-import "react-toastify/dist/ReactToastify.css";
-import * as Yup from "yup";
 import "./Deposit.css";
-import { makeStyles } from "@material-ui/core/styles";
 import styles from "../styles/typographyStyle.js";
+import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles(styles);
 
+toast.configure();
 const DepositSchema = Yup.object().shape({
-  amount: Yup.string().required("Required"),
-  comment: Yup.string().required("Required"),
+  amount: Yup.string().required("Please Enter the Amount"),
 });
 
 const DepositForm = (props) => (
@@ -28,8 +26,8 @@ const DepositForm = (props) => (
     <fieldset>
       <legend>Deposit</legend>
       <Form>
-        <div className="row justify-content-start">
-          <div className="col-lg-2 text-center p-3">
+        <div className="row">
+          <div className="col-2 text-center p-3">
             <Field
               component={TextField}
               name="amount"
@@ -37,18 +35,15 @@ const DepositForm = (props) => (
               label="Amount"
             />
           </div>
-          <div className="col-lg-2 text-center p-3">
+          <div className="col-2 text-center p-3">
             <Field
               component={TextField}
+              name="comment"
               type="text"
               label="Comment"
-              name="comment"
             />
-            {props.isSubmitting && <LinearProgress />}
           </div>
-        </div>
-        <div className="row justify-content-start">
-          <div className="col-lg-4 text-center p-3">
+          <div className="col-2 text-center p-3">
             <Button
               variant="contained"
               color="primary"
@@ -56,15 +51,15 @@ const DepositForm = (props) => (
               onClick={props.submitForm}
               className="deposit__btn"
             >
-              Submit
+              Deposit
             </Button>
           </div>
         </div>
+        <div>{props.isSubmitting && <LinearProgress />}</div>
       </Form>
     </fieldset>
   </div>
 );
-
 const Deposit = () => {
   const [{ userInfo }, dispatch] = useStateValue();
   const history = useHistory();
@@ -77,26 +72,27 @@ const Deposit = () => {
           <AccountInfo />
           <div>
             <Formik
-              initialValues={{
-                amount: "",
-                comment: "",
-              }}
+              initialValues={{ amount: "", comment: "" }}
               validationSchema={DepositSchema}
               onSubmit={(values, actions) => {
                 service.deposit(values).then((response) => {
-                  if (response.status === 200) {
-                    const userInfo = response.data;
+                  actions.setSubmitting(false);
+                  if (response && response.status === 200) {
+                    const user = response.data;
                     dispatch({
                       type: "UPDATE",
-                      item: userInfo,
+                      item: user,
                     });
-                    toast.success(userInfo.message, {
+                    toast.success(user.message, {
                       position: toast.POSITION.TOP_CENTER,
                     });
                     actions.resetForm();
+                  } else {
+                    toast.error("Deposit got failed , Please Check....", {
+                      position: toast.POSITION.TOP_CENTER,
+                    });
                   }
                 });
-                actions.setSubmitting(false);
               }}
               component={DepositForm}
             ></Formik>

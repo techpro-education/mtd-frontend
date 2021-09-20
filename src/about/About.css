@@ -1,5 +1,5 @@
 .about-us-area {
-  background: #fcfcfc;
+  background: white;
 }
 .about-us-area .about-us-wrap {
   position: relative;
@@ -30,12 +30,8 @@
   margin-bottom: 0;
 }
 .about-us-area .about-us-details .media.media-1 .media-left {
-  background: #377dff;
+  background: green;
 }
 .about-us-area .about-us-details .media.media-2 .media-left {
   background: #083996;
-}
-.about-us-area .about-us-details .btn {
-  padding: 0 50px;
-  margin-top: 10px;
 }

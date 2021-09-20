@@ -1,92 +1,124 @@
-import * as React from "react";
+import React from "react";
 import { Formik, Form, Field } from "formik";
 import { Button, LinearProgress } from "@material-ui/core";
-import InputLabel from "@material-ui/core/InputLabel";
 import { TextField } from "formik-material-ui";
+import * as Yup from "yup";
 import service from "../service/bankService";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import * as Yup from "yup";
 import "./Register.css";
 
 toast.configure();
-const RegisterSchema = Yup.object().shape({
-  firstName: Yup.string().required("Required"),
-  lastName: Yup.string().required("Required"),
-  password: Yup.string().required("Required"),
-  dob: Yup.string().required("Required"),
-  username: Yup.string().required("Required"),
+const initialValues = {
+  firstName: "",
+  lastName: "",
+  dob: "",
+  email: "",
+  username: "",
+  role: ["user"],
+  password: "",
+  confirmPassword: "",
+};
+
+const validationSchema = Yup.object().shape({
+  firstName: Yup.string().required("Please provide First Name"),
+  lastName: Yup.string().required("Please provide Last Name"),
+  dob: Yup.string().required("Please provide your Date of Birth"),
+  email: Yup.string()
+    .email("Please provide Valid Email Address")
+    .required("Please provide the Email Address"),
+  username: Yup.string().required("Please provide User Name"),
+  password: Yup.string().required("Please provide the password"),
   confirmPassword: Yup.string().oneOf(
     [Yup.ref("password"), null],
-    "Passwords must match"
+    "Password should match"
   ),
-  email: Yup.string().email("Invalid email").required("Required"),
 });
 
+const submitForm = (values, action) => {
+  service
+    .register(values)
+    .then((response) => {
+      if (response.status === 200 && response.data.success) {
+        toast.success(response.data.message, {
+          position: toast.POSITION.TOP_CENTER,
+        });
+        action.resetForm();
+      } else {
+        toast.error(response.data.message, {
+          position: toast.POSITION.TOP_CENTER,
+        });
+      }
+    })
+    .catch((e) => {
+      console.log("Error on submitting form ", e);
+    });
+  action.setSubmitting(false);
+};
 const RegistrationForm = (props) => (
   <div className="container">
     <fieldset>
       <legend>Register</legend>
       <Form>
         <div className="row justify-content-start">
-          <div className="col-lg-2 text-center p-3">
+          <div className="col-3 text-center p-3">
             <Field
               component={TextField}
               name="firstName"
-              type="text"
               label="First Name"
+              type="text"
             />
           </div>
-          <div className="col-lg-2 text-center p-3">
+          <div className="col-3 text-center p-3">
             <Field
               component={TextField}
               name="lastName"
-              type="text"
               label="Last Name"
+              type="text"
             />
           </div>
         </div>
         <div className="row justify-content-start">
-          <div className="col-lg-2 p-3">
+          <div className="col-3 text-center p-3">
             <Field
               component={TextField}
               name="dob"
+              label="Date of Birth"
               type="date"
-              label="Date Of Birth"
-              InputLabelProps={{
-                shrink: true,
-              }}
+              InputLabelProps={{ shrink: true }}
             />
           </div>
-          <div className="col-lg-2 p-3">
+          <div className="col-3 text-center p-3">
             <Field
               component={TextField}
               name="email"
-              type="email"
               label="Email"
+              type="email"
             />
           </div>
         </div>
         <div className="row justify-content-start">
-          <div className="col-lg-2 p-3">
+          <div className="col-3 text-center p-3">
             <Field
               component={TextField}
               name="username"
-              type="text"
               label="User Name"
+              type="text"
             />
           </div>
-          <div className="col-lg-4 p-3">
-            <div id="checkbox-group">Role</div>
+          <div className="col-3 text-center p-3">
+            <div className="row text-center pl-5" id="checkbox-group">
+              Role
+            </div>
             <div className="row">
-              <div className="col-lg-2">
-                <label className="p3">
+              <div className="col-2">
+                <label>
                   <Field type="checkbox" name="role" value="user" />
                   User
                 </label>
               </div>
-              <div className="col-lg-2">
-                <label className="p3">
+              <div className="col-2">
+                <label>
                   <Field type="checkbox" name="role" value="admin" />
                   Admin
                 </label>
@@ -95,26 +127,26 @@ const RegistrationForm = (props) => (
           </div>
         </div>
         <div className="row justify-content-start">
-          <div className="col-lg-2 p-3">
+          <div className="col-3 text-center p-3">
             <Field
               component={TextField}
-              type="password"
-              label="Password"
               name="password"
+              label="Password"
+              type="password"
             />
           </div>
-          <div className="col-lg-2 p-3">
+          <div className="col-3 text-center p-3">
             <Field
               component={TextField}
-              type="password"
-              label="Confirm Password"
               name="confirmPassword"
+              label="Confirm Password"
+              type="password"
             />
-            {props.isSubmitting && <LinearProgress />}
           </div>
         </div>
-        <div className="row justify-content-start">
-          <div className="col-lg-4 text-center p-3">
+        <div className="row">{props.isSubmitting && <LinearProgress />}</div>
+        <div className="row">
+          <div className="col-6 p-3 text-center">
             <Button
               variant="contained"
               color="primary"
@@ -134,36 +166,13 @@ const Register = () => {
   return (
     <div>
       <Formik
-        initialValues={{
-          firstName: "",
-          lastName: "",
-          dob: "",
-          email: "",
-          username: "",
-          role: ["user"],
-          password: "",
-          confirmPassword: "",
-        }}
-        validationSchema={RegisterSchema}
-        onSubmit={(values, actions) => { 
-          service.register(values).then((response) => {
-            if (response.status === 200 && response.data.success) {
-              toast.success(response.data.message, {
-                position: toast.POSITION.TOP_CENTER,
-              });
-              actions.resetForm();
-            } else {
-              toast.error(response.data.message, {
-                position: toast.POSITION.TOP_CENTER,
-              });
-            }
-          });
-          actions.setSubmitting(false);
-        }}
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={submitForm}
         component={RegistrationForm}
       ></Formik>
-      <ToastContainer />
     </div>
   );
 };
+
 export default Register;

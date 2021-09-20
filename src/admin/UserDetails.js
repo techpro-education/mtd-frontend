@@ -17,18 +17,16 @@ import { useHistory } from "react-router";
 import DeleteIcon from "@material-ui/icons/Delete";
 const useStyles = makeStyles(styles);
 
+toast.configure();
+
 let rows = [];
 const columns = [
-  { id: "firstName", label: "First Name", minWidth: 200 },
-  { id: "lastName", label: "Last Name", minWidth: 200 },
-  {
-    id: "email",
-    label: "Email",
-    minWidth: 200,
-  },
+  { id: "firstName", label: "First Name", align: "center" },
+  { id: "lastName", label: "Last Name", align: "center" },
+  { id: "email", label: "Email", align: "center" },
 ];
 
-export default function UserDetails(props) {
+const UserDetails = (props) => {
   const classes = useStyles();
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -42,19 +40,22 @@ export default function UserDetails(props) {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
+  const deleteStyle = { cursor: "pointer", color: "brown" };
 
   const handleDelete = (id) => {
     bankService.deleteUser(id).then((response) => {
-      if (response.status === 200) {
-        history.push("/admin");
+      if (response && response.status === 200) {
+        toast.success("User has been deleted successfully", {
+          position: toast.POSITION.TOP_CENTER,
+        });
+        history.push("/userMgmt");
       } else {
-        toast.success("Unable to Deleted the User", {
+        toast.success("Sorry ! , Unable to Delete the User", {
           position: toast.POSITION.TOP_CENTER,
         });
       }
     });
   };
-  const deleteStyle = { cursor: "pointer", color: "brown" };
   return (
     <Paper className={classes.root}>
       <fieldset>
@@ -82,14 +83,12 @@ export default function UserDetails(props) {
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row) => {
                   return (
-                    <TableRow hover tabIndex={-1} key={row.id}>
+                    <TableRow hover tabIndex={-1} key={row.userId}>
                       {columns.map((column) => {
                         const value = row[column.id];
                         return (
                           <TableCell key={column.id} align={column.align}>
-                            {column.format && typeof value === "number"
-                              ? column.format(value)
-                              : value}
+                            {value}
                           </TableCell>
                         );
                       })}
@@ -118,4 +117,6 @@ export default function UserDetails(props) {
       </fieldset>
     </Paper>
   );
-}
+};
+
+export default UserDetails;
