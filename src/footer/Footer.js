@@ -16,21 +16,21 @@ const Footer = () => {
         <div className="container">
           <div className="footer-inner">
             <div className="row">
-              <div className="col-lg-3 col-md-6">
+              <div className="col-4">
                 <div className="widget">
                   <Link className="widget-title" to={"/"}>
-                    <img src={logo} alt="" className="footer__logo" />
+                    <img src={logo} alt="" className="footer_logo" />
                   </Link>
-                  <span className="widget-title pl-1"> MTD Bank</span>
+                  <span className="widget-title pl-1">MTD Bank</span>
                   <ul className="widget-list">
-                    <li>112, West road, F1 456 Tram Town.</li>
+                    <li>112, West Road , F1 456 Tram Town</li>
                     <li>Office No 2312</li>
                     <li>info@mtdbank.com</li>
-                    <li>234-3434567</li>
+                    <li>234-1234568</li>
                   </ul>
                 </div>
               </div>
-              <div className="col-xl-2 col-lg-3 col-md-6 offset-lg-1">
+              <div className="col-2">
                 <div className="widget">
                   <div className="widget-title">Links</div>
                   <ul className="widget-list">
@@ -49,7 +49,7 @@ const Footer = () => {
                   </ul>
                 </div>
               </div>
-              <div className="col-xl-2 col-lg-3 col-md-6">
+              <div className="col-2">
                 <div className="widget">
                   <div className="widget-title">About Us</div>
                   <ul className="widget-list">
@@ -68,9 +68,9 @@ const Footer = () => {
                   </ul>
                 </div>
               </div>
-              <div className="col-lg-4 col-md-6">
+              <div className="col-4">
                 <div className="widget">
-                  <div className="widget-title"> Contact Us</div>
+                  <div className="widget-title">Contact Us</div>
                   <p>Please connect with us through following channels</p>
                   <ul className="social-area">
                     <li>
@@ -103,8 +103,8 @@ const Footer = () => {
       <div className="footer-bottom">
         <div className="container">
           <div className="row">
-            <div className="col-12 align-self-center">
-              <div className="text-center">
+            <div className="align-self-start col-8">
+              <div className="text-left">
                 <ul>
                   <li>
                     <Link to={"/"}>Terms & Conditions</Link>
@@ -118,15 +118,15 @@ const Footer = () => {
                 </ul>
               </div>
             </div>
+            <div className="align-self-center pb-3 col-4">
+              <div className="copy-right text-center">
+                <span>
+                  <CopyrightRounded />
+                </span>
+                2021 , MTB Bank all right reserved
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-      <div className="col-12 align-self-center pb-3">
-        <div className="copy-right text-center">
-          <span>
-            <CopyrightRounded />
-          </span>
-          2021, MTD Bank all right reserved
         </div>
       </div>
     </div>

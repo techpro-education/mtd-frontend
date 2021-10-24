@@ -1,11 +1,6 @@
-.footer__logo {
-  width: 60px;
-  object-fit: contain;
-}
-
-/*--------------------------------------------------
-    ##Footer
----------------------------------------------------*/
+/*-----------------------------------
+  Footer Area
+-----------------------------------*/
 .footer-area {
   background-color: teal;
   background-position: center;
@@ -15,50 +10,26 @@
   padding: 30px 0 30px;
 }
 
-.footer-inner .widget-contact p {
-  margin-bottom: 21px;
-}
-.footer-inner .widget-contact .social-area li a {
-  color: #083996;
-}
-.footer-inner .widget-contact .social-area li a:hover {
-  color: #fff;
+.footer_logo {
+  width: 60px;
+  object-fit: contain;
 }
 
-.footer-bottom {
-  padding: 29px 0;
-}
-.footer-bottom ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: inline-flex;
-}
-.footer-bottom ul li {
-  font-size: 18px;
-  margin-right: 18px;
-  color: #292929;
-}
-.footer-bottom .copy-right {
-  font-size: 18px;
-  color: #292929;
-}
-
-.footer-inner-2 .widget-contact .social-area li a:hover {
-  background: #ff536d;
-}
-
-/*---------------------------------------------------
-	widget styles
-----------------------------------------------------*/
-
+/*-----------------------------------
+  Widget
+-----------------------------------*/
 .widget {
   margin-bottom: 30px;
 }
+
+.widget p {
+  color: white;
+}
+
 .widget-title {
-  color: #fff;
-  font-size: 24px;
+  color: white;
   font-weight: 600;
+  font-size: 24px;
 }
 
 .widget-list {
@@ -66,32 +37,22 @@
   padding: 0;
   margin: 0;
 }
-
 .widget-list li {
-  color: #fff;
+  color: white;
   font-size: 16px;
   font-weight: 400;
   margin-bottom: 9px;
-  transition: all 0.3s ease-in;
 }
-
 .widget-list li a {
-  color: #fff;
+  color: white;
   font-size: 16px;
   font-weight: 400;
-  margin-bottom: 9px;
-  transition: all 0.3s ease-in;
 }
 
-.widget p {
-  color: #fff;
-}
+/*-----------------------------------
+  Social Area
+-----------------------------------*/
 
-.widget-list li:hover a {
-  color: #083996;
-}
-
-/*********** social-area style **************/
 .social-area {
   list-style: none;
   margin: 0;
@@ -103,17 +64,39 @@
   height: 46px;
   width: 46px;
   border-radius: 50%;
-  background: #fff;
+  background: white;
+  color: #083996;
   display: inline-block;
   line-height: 46px;
   margin-left: 16px;
   text-align: center;
-  transition: all 0.5s ease-in;
 }
+
 .social-area li a:hover {
-  background: #377dff;
-  color: #fff;
+  background: #083996;
+  color: white;
 }
-.social-area li:first-child a {
-  margin-left: 0;
+
+/*-----------------------------------
+ Footer Bottom
+-----------------------------------*/
+.footer-bottom {
+  padding: 29px 0;
+}
+
+.footer-bottom ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: inline-flex;
+}
+
+.footer-bottom ul li {
+  margin-right: 18px;
+  font-size: 18px;
+}
+
+.footer-bottom .copy-right {
+  font-size: 18px;
+  color: #083996;
 }
